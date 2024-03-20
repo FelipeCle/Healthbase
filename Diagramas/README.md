@@ -7,3 +7,36 @@
 
 10395894 - Matheus do Nascimento Marques
 
+## 1. Cenários de Negócio
+### Diagramas
+- Diagrama de Casos de Uso + Estórias do Usuário
+
+![Diagrama de Casos de Uso + Estórias do Usuário](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_casos_de_uso.png)
+![](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_estoria_do_usuario.png)
+
+## 2. Visão Lógica
+### Diagramas
+- Diagrama de Classes de Domínio
+
+![Diagrama de Classes de Domínio](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_diagrama_de_classes.png)
+
+
+## 3. Visão de Processos
+### Diagramas
+- Diagrama de Sequência
+- Diagrama de Atividades
+
+![Diagrama de Sequência](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/diagrama_de_sequencia_busca_profissionais.png)
+![Diagrama de Atividades](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_diagrama_de_atividades.png)
+
+## 4. Visão de Desenvolvimento
+### Diagramas
+- Diagrama de Pacotes
+
+![Diagrama de Pacotes](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_pacotes.png)
+
+## 5. Visão Física
+### Diagramas
+- Diagrama de Deployment
+
+![Diagrama de Deployment](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_deployment.png)
