@@ -23,10 +23,14 @@
 
 ## 3. Visão de Processos
 ### Diagramas
+
 - Diagrama de Sequência
-- Diagrama de Atividades
 
 ![Diagrama de Sequência](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/diagrama_de_sequencia_busca_profissionais.png)
+- Nota: Um diagrama de sequência para a busca de fornecedores seria idêntico ao diagrama acima, mudando somente a classe AnaliseProfissionais por AnaliseFornecedores
+
+- Diagrama de Atividades
+  
 ![Diagrama de Atividades](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_diagrama_de_atividades.png)
 
 ## 4. Visão de Desenvolvimento
