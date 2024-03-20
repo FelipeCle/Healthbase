@@ -7,6 +7,10 @@
 
 10395894 - Matheus do Nascimento Marques
 
+## Personas e Jornadas do Usuário
+-Link no Miro:
+https://miro.com/app/board/uXjVNo1cIOs=/?share_link_id=308426280962
+
 ## 1. Cenários de Negócio
 ### Diagramas
 - Diagrama de Casos de Uso + Estórias do Usuário
