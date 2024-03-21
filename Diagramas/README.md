@@ -16,7 +16,7 @@ https://miro.com/app/board/uXjVNo1cIOs=/?share_link_id=308426280962
 ## Diagramas
 - Diagrama de Casos de Uso + Estórias do Usuário
 
-![Diagrama de Casos de Uso + Estórias do Usuário](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_casos_de_uso.png)
+![Diagrama de Casos de Uso + Estórias do Usuário](https://raw.githubusercontent.com/FelipeCle/Healthbase/268bdd1ef8420571dcf2fd201b17a29bb2633cac/Diagramas/healthbase_casos_de_uso.png)
 ![](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_estoria_do_usuario.png)
 
 ## 2. Visão Lógica
