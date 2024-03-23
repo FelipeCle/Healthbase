@@ -31,7 +31,7 @@ https://miro.com/app/board/uXjVNo1cIOs=/?share_link_id=308426280962
 
 - Diagrama de Sequência
 
-![Diagrama de Sequência](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/diagrama_de_sequencia_busca_profissionais.png)
+![Diagrama de Sequência](https://raw.githubusercontent.com/FelipeCle/Healthbase/main/Diagramas/healthbase_diagrama_de_sequencia.jpg)
 - Nota: Um diagrama de sequência para a busca de fornecedores seria idêntico ao diagrama acima, mudando somente a classe AnaliseProfissionais por AnaliseFornecedores
 
 - Diagrama de Atividades
