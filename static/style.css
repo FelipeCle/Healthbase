@@ -1,0 +1,118 @@
+:root{
+    --cor-azul: #002D74;
+    --cor-preta: #000000;
+    --cor-azulclaro: #00A3EE;
+    --cor-branca: #FFFFFF;
+}
+
+*,
+*::after
+*::before{
+    box-sizing:border-box;
+}
+body{
+    margin:0;
+    font-family:K2D;
+}
+
+.texto {
+    padding: 0 34px;
+    margin-right: 31px;
+    margin-left: 31px;
+    color: #FFFFFF;
+    font-size: 32px;
+    margin-bottom: 684px;
+}
+
+.pagina{
+    display: flex;
+    justify-content:start;
+
+}
+
+.Logo{
+    padding: 0 34px;
+    margin-right: 31px;
+    margin-left: 31px;
+    display: flex;
+    justify-content:start;
+    margin:28px;
+    font-size: 64px;
+    color: #FFFFFF;
+    font-weight: bold;
+
+}
+
+
+.esquerda{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    background-color: var(--cor-azul);
+}
+
+.direita{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    margin:407px;
+    align-items: flex-start;
+}
+
+.login{
+    margin-bottom: 30px;
+    color: #002D74;
+    font-size: 64px;
+    font-weight: normal;
+    text-align: right;
+    margin-left: auto; 
+    margin-right: 300px; 
+}
+
+.user, .password, .div {
+    padding-left: 32px; 
+    margin-bottom: 84px;
+    color: #000000;
+    font-size: 24px;
+}
+
+.secao {
+    display: flex;
+    justify-content: start; 
+    align-items: center; 
+}
+
+.div:first-child {
+    flex-grow: 1; 
+    margin-right: 192px; 
+}
+
+
+
+.password{
+    margin-bottom: 104px;
+}
+
+.div {
+    margin: 13px 0; 
+}
+
+.entrar{
+    padding: 20px 300px;
+    margin-bottom: 18px;
+    border-radius: 24px;
+    color: var(--cor-branca);
+    background-color: var(--cor-azul);
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.bandeira{
+    color:#FFFFFF;
+    padding: 0 34px;
+    margin-right: 31px;
+    margin-left: 31px;
+}

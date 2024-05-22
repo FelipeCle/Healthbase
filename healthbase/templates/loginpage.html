@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    :root{
+        --cor-azul: #002D74;
+        --cor-preta: #000000;
+        --cor-azulclaro: #00A3EE;
+        --cor-branca: #FFFFFF;
+    }
+    
+    *,
+    *::after
+    *::before{
+        box-sizing:border-box;
+    }
+    body{
+        margin:0;
+        font-family:K2D;
+    }
+    
+    .texto {
+        padding: 0 34px;
+        margin-right: 31px;
+        margin-left: 31px;
+        color: #FFFFFF;
+        font-size: 32px;
+        margin-bottom: 684px;
+    }
+    
+    .pagina{
+        display: flex;
+        justify-content:start;
+    
+    }
+    
+    .Logo{
+        padding: 0 34px;
+        margin-right: 31px;
+        margin-left: 31px;
+        display: flex;
+        justify-content:start;
+        margin:28px;
+        font-size: 64px;
+        color: #FFFFFF;
+        font-weight: bold;
+    
+    }
+    
+    
+    .esquerda{
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--cor-azul);
+    }
+    
+    .direita{
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        background-color: #FFFFFF;
+        margin:407px;
+        align-items: flex-start;
+    }
+    
+    .login{
+        margin-bottom: 30px;
+        color: #002D74;
+        font-size: 64px;
+        font-weight: normal;
+        text-align: right;
+        margin-left: auto; 
+        margin-right: 300px; 
+    }
+    
+    .user, .password, .div {
+        padding-left: 32px; 
+        margin-bottom: 84px;
+        color: #000000;
+        font-size: 24px;
+    }
+    
+    .secao {
+        display: flex;
+        justify-content: start; 
+        align-items: center; 
+    }
+    
+    .div:first-child {
+        flex-grow: 1; 
+        margin-right: 192px; 
+    }
+    
+    
+    
+    .password{
+        margin-bottom: 104px;
+    }
+    
+    .div {
+        margin: 13px 0; 
+    }
+    
+    .entrar{
+        padding: 20px 300px;
+        margin-bottom: 18px;
+        border-radius: 24px;
+        color: var(--cor-branca);
+        background-color: var(--cor-azul);
+        display: inline-block;
+        font-weight: bold;
+        font-size: 18px;
+        text-decoration: none;
+    }
+    
+    .bandeira{
+        color:#FFFFFF;
+        padding: 0 34px;
+        margin-right: 31px;
+        margin-left: 31px;
+    }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">    
+    </head>
+<body>
+    <div class="pagina">
+        <div class="esquerda">
+            <div class="Logo">           
+                <h2>HealthBase</h2>
+            </div>
+            <div class="texto">
+                Encontrando os melhores médicos para as melhores oportunidades.
+            </div>
+            <div class="bandeira">
+                © 2024 HealthBase<br>
+                <img src="bandeira.png">
+            </div>
+
+        </div>
+        <div class="direita">
+            <div class="login">
+                Login
+            </div>
+            <form method="post"> <!-- Adicione o formulário e o método POST aqui, ajuste o action conforme necessário -->
+                {% csrf_token %} 
+                <div class="user">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Insira o Email" required>
+                </div>
+                <div class="password">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Insira a Senha" required>
+                </div>
+                <div class="secao">
+                    <div class="div">
+                        <input type="checkbox" id="lembrar" name="lembrar">
+                        <label for="lembrar">Lembrar de mim</label>
+                    </div>
+                    <div class="div">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+                </div>
+                <div class="entrar">
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+            <div class="secao2">
+                Não tem uma conta?
+                <a href="{% url 'registro' %}">Inscreva-se</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

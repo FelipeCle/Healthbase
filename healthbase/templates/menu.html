@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página de Menu</title>
+    <style>
+        /* Estilos para a barra azul no canto esquerdo */
+        .sidebar {
+            background-color: #002D74;
+            color: #ffffff;
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para o catálogo de botões */
+        .catalog {
+            margin-left: 220px; /* Espaço para a barra lateral */
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Bem-vindo, usuário {{ nome }}!</h1>
+        <a href="{% url 'menu' %}">Catálogo</a>
+        <a href="{% url 'conta' %}">Conta</a>
+        <a href="{% url 'encomendar_indicadores' %}">Encomenda de Indicadores</a>
+        <a href="{% url 'visualizar_cobrancas' %}">Billing</a>
+        <a href="{% url 'home' %}">Logout</a>
+    </div>
+    <div class="catalog">
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}
+                <input type="hidden" name="produto" value="Indicador 1">
+                <input type="hidden" name="preco" value="4.00">
+                <input type="hidden" name="powerbi_url" value="https://app.powerbi.com/reportEmbed?reportId=c42eef01-3030-49c6-a9ff-76b483648bfd&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963">
+                <button type="submit" class="button">
+                    <p>Indicador 1</p>
+                    <p>Preço: R$4,00</p>
+                </button>         
+        </form>
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="adicionar1" value="adicionar1">Adicionar ao Painel</button>
+            <button type="submit" name="remover1" value="remover1">Remover do Painel</button>
+            {% if indicador1 == 0 %}
+                <p style="color: red;">O indicador não foi adicionado ao painel</p>
+            {% elif indicador1 == 1 %}
+                <p style="color: green;">O indicador foi adicionado ao painel</p>
+            {% endif %}
+        </form> 
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}       
+            <input type="hidden" name="produto" value="Indicador 2">
+            <input type="hidden" name="preco" value="8.00">
+            <input type="hidden" name="powerbi_url" value="www.terra.com.br">
+            <button type="submit" class="button">
+                <p>Indicador 2</p>
+                <p>Preço: R$8,00</p>
+            </button> 
+        </form>
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="adicionar2" value="adicionar2">Adicionar ao Painel</button>
+            <button type="submit" name="remover2" value="remover2">Remover do Painel</button>
+            {% if indicador2 == 0 %}
+                <p style="color: red;">O indicador não foi adicionado ao painel</p>
+            {% elif indicador2 == 1 %}
+                <p style="color: green;">O indicador foi adicionado ao painel</p>
+            {% endif %}
+        </form> 
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}       
+            <input type="hidden" name="produto" value="Indicador 3">
+            <input type="hidden" name="preco" value="16.00">
+            <input type="hidden" name="powerbi_url" value="www.r7.com">
+            <button type="submit" class="button">
+                <p>Indicador 3</p>
+                <p>Preço: R$16,00</p>
+            </button>
+        </form>
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="adicionar3" value="adicionar3">Adicionar ao Painel</button>
+            <button type="submit" name="remover3" value="remover3">Remover do Painel</button>
+            {% if indicador3 == 0 %}
+                <p style="color: red;">O indicador não foi adicionado ao painel</p>
+            {% elif indicador3 == 1 %}
+                <p style="color: green;">O indicador foi adicionado ao painel</p>
+            {% endif %}
+        </form> 
+        <form action="{% url 'menu' %}" method="post">
+            {% csrf_token %}       
+            <input type="hidden" name="produto" value="Indicador 4">
+            <input type="hidden" name="preco" value="20.00">
+            <input type="hidden" name="powerbi_url" value="www.terra.com.br">
+            <button type="submit" class="button">
+                <p>Indicador 4</p>
+                <p>Preço: R$20,00</p>
+            </button>
+            <button type="submit" name="adicionar4" value="adicionar4">Adicionar ao Painel</button>
+            <button type="submit" name="remover4" value="remover4">Remover do Painel</button>
+        </form>
+        <form action="{% url 'meupainel' %}" method="post" target="_blank">
+            {% csrf_token %}
+            <button type="submit" class="button">
+                <p>Meu Painel</p>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
