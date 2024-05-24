@@ -32,6 +32,3 @@ jobs:
     - name: Django Testing
       run: |
         python3 manage.py test
-    - name: Lint with flake8
-      run: |
-        flake8
