@@ -30,6 +30,7 @@ urlpatterns = [
     path('encomendar_sucesso/', views.encomendar_sucesso, name='encomendar_sucesso'),
     path('visualizar_cobrancas/', views.visualizar_cobrancas, name='visualizar_cobrancas'),
     path('meupainel/', views.meupainel, name='meupainel'),
+    path('alterar_senha/', views.alterar_senha, name='alterar_senha'),
 ]
 
 

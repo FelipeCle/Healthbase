@@ -1,16 +1,94 @@
-<!-- sucesso.html -->
-
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
+    <link rel="stylesheet" href="style_termos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sucesso</title>
+    <title>HealthBase - Cadastro realizado com sucesso!</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "K2D";
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .top-section, .bottom-section {
+            width: 100%;
+            text-align: center;
+        }
+
+        .top-section {
+            margin-bottom: auto;
+            padding-top: 20px;
+        }
+
+        .top-section img {
+            width: 87px;
+            height: 87px;
+        }
+
+        .top-section h1 {
+            color: #093985;
+            font-size: 45px;
+        }
+
+        .content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .texto1 {
+            font-size: 40px;
+            font-weight: bold;
+            color: darkblue;
+            margin-top: 20px;
+        }
+
+        .texto2 {
+            font-size: 25px;
+            color: red;
+            margin-top: 20px;
+        }
+
+        .bottom-section {
+            margin-top: auto;
+            padding-bottom: 20px;
+            color: #093985;
+        }
+
+        .bottom-section img {
+            display: block;
+            margin: 10px auto 0;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Cadastro realizado com sucesso!</h1>
-    <p>O assinante foi cadastrado com êxito.</p>
-    <li><a href="{% url 'home' %}">Login</a></li>
-    <!-- Você pode adicionar mais informações ou redirecionar o usuário para outra página aqui -->
+    <div class="top-section">
+        <img src="{% static 'IconeSoftware.svg' %}" alt="Ícone de Software">
+        <h1>HealthBase</h1>
+    </div>
+
+    <div class="content">
+        <div class="texto1">
+            <p>Cadastro realizado com sucesso!</p>
+        </div>
+        <p>Agora você pode se autenticar no sistema! <a href="{% url 'home' %}">Faça login</a></p>
+    </div>
+
+    <div class="bottom-section">
+        © 2024 HealthBase<br>
+        <img src="{% static 'bandeira.png' %}" alt="Bandeira">
+    </div>
 </body>
 </html>

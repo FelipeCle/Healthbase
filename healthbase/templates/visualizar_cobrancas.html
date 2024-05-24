@@ -1,72 +1,134 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Cobranças</title>
+    <title>Healthbase - Visualizar cobranças</title>
     <style>
-        /* Estilos para a barra azul no canto esquerdo */
-        .sidebar {
-            background-color: #002D74;
-            color: #ffffff;
-            width: 200px;
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "K2D";
+            display: flex;
+        }
+
+        nav {
+            width: 350px;
             height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
+            background-color: #154BA8;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
         }
 
-        .sidebar a {
-            color: #ffffff;
+        nav a {
+            background-color: #093985;
+            border: 1px;
+            border-radius: 6px;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
             text-decoration: none;
             margin-bottom: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        /* Estilos para o conteúdo da página */
-        .content {
-            margin-left: 220px; /* Espaço para a barra lateral */
+        nav a:hover {
+            background-color: #1957B9; 
+        }
+
+        main {
+            flex: 1;
             padding: 20px;
+            margin-left: 20px;
         }
 
-        /* Estilos para a caixa de lista */
+        main h1 {
+            color: #002D74;
+        }
+
+        main p {
+            color: #002D74;
+        }
+
+        main a {
+            background-color: #093985;
+            border: 1px;
+            border-radius: 6px;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container {
+            margin-top: 20px;
+        }
+
+        .content {
+            margin-left: 5px; /* Adicionado para margem no conteúdo à direita */
+        }
         .resultados {
             margin-top: 20px;
             border: 1px solid #ccc;
             padding: 10px;
         }
+
+        .resultados p {
+            color: #002D74; /* Azul marinho */
+        }
+
+        .resultados span {
+            color: green; /* Verde */
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h1>Bem-vindo, usuário {{ nome }}!</h1>
+    <nav>
+        <div style="display: flex; align-items: center;">
+            <img src="{% static 'IconeSoftware.svg' %}" width="87" height="87" alt="Ícone de Software">
+            <h1 style="color: white; font-size: 45px; margin-left: 20px;">HealthBase</h1>
+        </div>
+        <h3 style="color: white;">Bem-vindo, usuário {{ nome }}!</h3>
         <a href="{% url 'menu' %}">Catálogo</a>
-        <a href="{% url 'conta' %}">Conta</a>
+        <a href="{% url 'conta' %}">Minha Conta</a>
         <a href="{% url 'encomendar_indicadores' %}">Encomenda de Indicadores</a>
         <a href="{% url 'visualizar_cobrancas' %}">Billing</a>
         <a href="{% url 'home' %}">Logout</a>
-    </div>
-    <div class="content">
-        <h1>Visualizar Cobranças</h1>
-        <form method="post">
-            {% csrf_token %}
-            <label for="data_filtro">Filtrar a partir da data:</label>
-            <input type="date" id="data_filtro" name="data_filtro">
-            <button type="submit">Filtrar</button>
-        </form>
-        <form method="post">
-            {% csrf_token %}
-            <a href="{% url 'visualizar_cobrancas' %}">Clique aqui para mostrar todas as suas transações</a>
-        </form>
-        <div class="resultados">
-            {% for transacao in transacoes %}
-                <p>{{ transacao.produto }} - R$ {{ transacao.preco }}   -   Cartão Utilizado: {{ transacao.numCartao }}   -    Data: {{ transacao.data_compra|date:"d/m/Y" }} Hora: {{ transacao.hora_compra }} </p>
-            {% endfor %}
+        <div style="margin-top:290px;color:white;">
+            © 2024 HealthBase<br>
+            <img src="{% static 'bandeira.png' %}" alt="bandeira">
         </div>
+    </nav>
+    <div class="content">
+        <main>
+            <h1>Visualizar Cobranças</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label for="data_filtro">Filtrar a partir da data:</label>
+                <input type="date" id="data_filtro" name="data_filtro">
+                <button type="submit">Filtrar</button><br><br><br>
+            </form>
+            <form method="post">
+                {% csrf_token %}
+                <a href="{% url 'visualizar_cobrancas' %}">Clique aqui para mostrar todas as suas transações</a><br><br><br>
+            </form>
+            <div class="resultados">
+                {% for transacao in transacoes %}
+                    <p><span>{{ transacao.produto }}</span> - R$ <span>{{ transacao.preco }}</span>   -  Cartão Utilizado: <span>{{ transacao.numCartao }}</span>    -    Data: <span>{{ transacao.data_compra|date:"d/m/Y" }}</span> Hora: <span>{{ transacao.hora_compra }}</span> </p>
+                {% endfor %}
+            </div>
+        </main>
     </div>
 </body>
 </html>

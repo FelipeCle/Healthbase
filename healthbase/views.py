@@ -122,14 +122,12 @@ def menu(request):
         conta = Conta.objects.get(userID=user_id)
         num_cartao = conta.numCartao
 
-        # Recupere o produto e o preço do formulário
         produto = request.POST.get('produto')
         preco = float(request.POST.get('preco'))
         powerbi = request.POST.get('powerbi_url')
         data_billing = datetime.now().date()
         hora_compra = datetime.now().time()
 
-        # Insira os dados na tabela Billing
         billing = Billing(
             userID=user_id,
             produto=produto,
@@ -140,7 +138,6 @@ def menu(request):
         )
         billing.save()
 
-        # Redirecione para a página do menu com uma mensagem de sucesso
         webbrowser.open_new_tab(powerbi)
         indicador1 = Meupainel.objects.get(id=user_id).indicador1
         indicador2 = Meupainel.objects.get(id=user_id).indicador2
@@ -148,11 +145,9 @@ def menu(request):
         return render(request, 'menu.html', {'user_id': user_id, 'nome': nome, 'indicador1': indicador1, 'indicador2': indicador2, 'indicador3': indicador3})
 
     else:
-        # Se não for uma requisição POST, redirecione para a página do menu
         user_id = request.session.get('userID')
         nome = request.session.get('nome')
 
-        # Recupere os valores dos indicadores do modelo Meupainel
         indicador1 = Meupainel.objects.get(id=user_id).indicador1
         indicador2 = Meupainel.objects.get(id=user_id).indicador2
         indicador3 = Meupainel.objects.get(id=user_id).indicador3
@@ -160,7 +155,6 @@ def menu(request):
         return render(request, 'menu.html', {'user_id': user_id, 'nome': nome, 'indicador1': indicador1, 'indicador2': indicador2, 'indicador3': indicador3})
 
 def conta(request):
-    # Recupere os dados da conta do usuário (substitua pelo seu método de autenticação)
     user_id = request.session.get('userID')
     conta = Conta.objects.get(userID=user_id)
     nome = request.session.get('nome')
@@ -171,10 +165,37 @@ def conta(request):
         'numCartao': conta.numCartao,
         'cvv': conta.cvv,
         'val_cartao': conta.val_cartao,
-        # Adicione outros campos conforme necessário
     }
 
     return render(request, 'conta.html', context)
+
+def alterar_senha(request):
+    user_id = request.session.get('userID')  # Obtém o userID da sessão
+    nome = request.session.get('nome')
+    if request.method == 'POST':
+        # Obtém os dados do formulário
+        nova_senha = request.POST.get('nova_senha')
+        Conta.objects.filter(userID=user_id).update(senha=nova_senha)
+        # Redireciona para a página de conta
+        conta = Conta.objects.get(userID=user_id)
+        context = {
+        'nome': nome,
+        'numCartao': conta.numCartao,
+        'cvv': conta.cvv,
+        'val_cartao': conta.val_cartao,      
+        }
+        context = {
+            'nome': conta.nome,
+            'cpf': conta.cpf,
+            'email': conta.email,
+            'numCartao': conta.numCartao,
+            'cvv': conta.cvv,
+            'val_cartao': conta.val_cartao,    
+        }
+        return render(request, 'conta.html', context) 
+    user_id = request.session.get('userID')
+    nome = request.session.get('nome')
+    return render(request, 'alterar_senha.html', {'user_id': user_id, 'nome': nome}) 
 
 def visualizar_cobrancas(request):  
     if request.method == 'POST':
@@ -236,11 +257,9 @@ def modificarcartao(request):
         return render(request, 'conta.html', context)
 
     # Caso o método HTTP não seja POST, renderizar o template com o formulário
-    return render(request, 'modificarcartao.html')
+    return render(request, 'modificarcartao.html', {'user_id': user_id, 'nome': nome})
 
 def meupainel(request):
-    # Suponha que você tenha obtido o valor dos indicadores do banco de dados
-    # e armazenado em variáveis (indicador1, indicador2, indicador3)
     user_id = request.session.get('userID')
     indicador1 = Meupainel.objects.get(id=user_id).indicador1
     indicador2 = Meupainel.objects.get(id=user_id).indicador2
@@ -248,20 +267,20 @@ def meupainel(request):
     
     # Lógica para redirecionar com base nos valores dos indicadores
     if indicador1 == 1 and indicador2 == 0 and indicador3 == 0:
-        redirect_url = "http://www.r7.com"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=a918af25-5ee6-46b6-9f3c-cded36387273&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 1",
+            produto="Indicador: Atendimento via telemedicina",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=4.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     elif indicador1 == 1 and indicador2 == 1 and indicador3 == 0:
-        redirect_url = "http://www.uol.com.br"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=44b0e2a6-f70a-4071-b377-1d28142d7b28&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 1",
+            produto="Indicador: Atendimento via telemedicina",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=4.00,
             data_compra=datetime.now().date(),
@@ -269,17 +288,17 @@ def meupainel(request):
         )
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 2",
+            produto="Indicador: Organizado por sexo",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=8.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     elif indicador1 == 1 and indicador2 == 0 and indicador3 == 1:
-        redirect_url = "http://www.facebook.com"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=60ccec1e-fc7a-4033-bdbb-0effaa78b8bd&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 1",
+            produto="Indicador: Atendimento via telemedicina",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=4.00,
             data_compra=datetime.now().date(),
@@ -287,17 +306,17 @@ def meupainel(request):
         )
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 3",
+            produto="Indicador: Número de reviews",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=16.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     elif indicador1 == 1 and indicador2 == 1 and indicador3 == 1:
-        redirect_url = "http://www.terra.com.br"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=ffe6e7d8-abaf-45f1-8d7f-65010cb5afd9&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 1",
+            produto="Indicador: Atendimento via telemedicina",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=4.00,
             data_compra=datetime.now().date(),
@@ -305,7 +324,7 @@ def meupainel(request):
         )
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 2",
+            produto="Indicador: Organizado por sexo",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=8.00,
             data_compra=datetime.now().date(),
@@ -313,27 +332,27 @@ def meupainel(request):
         )
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 3",
+            produto="Indicador: Número de reviews",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=16.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     elif indicador1 == 0 and indicador2 == 1 and indicador3 == 0:
-        redirect_url = "http://www.msn.com"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=3d8ba75b-ea72-4131-b653-b45d131dc49c&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 2",
+            produto="Indicador: Organizado por sexo",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=8.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     elif indicador1 == 0 and indicador2 == 1 and indicador3 == 1:
-        redirect_url = "http://www.noticiasautomotivas.com.br"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=77426d95-6e69-4355-b1ac-c267176938e9&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 2",
+            produto="Indicador: Organizado por sexo",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=8.00,
             data_compra=datetime.now().date(),
@@ -341,31 +360,34 @@ def meupainel(request):
         )
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 3",
+            produto="Indicador: Número de reviews",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=16.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     elif indicador1 == 0 and indicador2 == 0 and indicador3 == 1:
-        redirect_url = "http://www.instagram.com"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=f53d8429-0103-43c8-ae3c-2b814bc3d20a&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
         Billing.objects.create(
             userID=user_id,
-            produto="Indicador 3",
+            produto="Indicador: Número de reviews",
             numCartao=Conta.objects.get(userID=user_id).numCartao,
             preco=16.00,
             data_compra=datetime.now().date(),
             hora_compra=datetime.now().time()
         )
     else:
-        redirect_url = "http://www.ig.com.br"
+        redirect_url = "https://app.powerbi.com/reportEmbed?reportId=bfa6ceef-21c5-4ebe-911c-b1ee373da752&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963"
 
     return redirect(redirect_url)
 
 def encomendar_indicadores(request):
+    user_id = request.session.get('userID')
+    nome = request.session.get('nome')
     if request.method == 'POST':
         # Obter o user_id da sessão
         user_id = request.session.get('userID')
+        nome = request.POST.get('nome')
 
         # Obter a descrição enviada pelo usuário
         descricao = request.POST.get('descricao')
@@ -374,10 +396,11 @@ def encomendar_indicadores(request):
         encomenda = Encomenda(userID=user_id, descricao=descricao)
         encomenda.save()
 
-        return render(request, 'encomendar_sucesso.html')  
-
+        return render(request, 'encomendar_sucesso.html', {'user_id': user_id, 'nome': nome}) 
+    user_id = request.session.get('userID') 
+    nome = request.session.get('nome') 
     # Se o método for GET, renderize o formulário vazio
-    return render(request, 'encomendar_indicadores.html')
+    return render(request, 'encomendar_indicadores.html', {'user_id': user_id, 'nome': nome})
 
 def encomendar_sucesso(request):
     return render(request, 'encomendar_sucesso.html')

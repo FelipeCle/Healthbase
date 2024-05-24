@@ -1,0 +1,58 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.container {
+    width: 100%; /* O container ocupa toda a largura da tela */
+    margin: 50px auto;
+    display: flex; /* Divida o container em 2 colunas */
+    flex-direction: row; /* Organize as colunas lado a lado */
+    gap: 20px; /* Adicione espaço entre as colunas */
+}
+
+.container-criar-conta,
+.container-pagamento {
+    flex: 1; /* As colunas ocupam o mesmo espaço disponível */
+    padding: 20px;
+    background-color: #fff;
+}
+
+button {
+    border: 1px;
+    border-radius: 6px;
+
+    height: 30px;
+    color: #fff;
+    background-color: #002D74
+}
+
+h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #002D74
+}
+
+form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #002D74;
+    border-radius: 6px
+}

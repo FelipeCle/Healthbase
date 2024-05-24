@@ -1,139 +1,290 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0, height=device-height">
+    <title>HealthBase</title>
+    <link rel="stylesheet" href="style_minha_conta.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Página de Menu</title>
     <style>
-        /* Estilos para a barra azul no canto esquerdo */
-        .sidebar {
-            background-color: #002D74;
-            color: #ffffff;
-            width: 200px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "K2D";
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
         }
 
-        .sidebar a {
-            color: #ffffff;
+        nav {
+            width: 350px;
+            height: 100vh; /* Alterado para ocupar 100% da altura da janela de visualização */
+            background-color: #154BA8;
+            padding: 25px;
+            display: flex;
+            flex-direction: column; /* Empilha os links verticalmente */
+        }
+
+        nav a {
+            background-color: #093985;
+            border: 1px;
+            border-radius: 6px;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
             text-decoration: none;
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Espaçamento entre os links */
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        /* Estilos para o catálogo de botões */
-        .catalog {
-            margin-left: 220px; /* Espaço para a barra lateral */
-            padding: 20px;
+        nav a:hover {
+            background-color: #1957B9; 
         }
 
-        .button {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #333333;
+        main {
+            flex: 1; /* Ocupa todo o espaço restante */
+            padding: 0px;
+            margin-left: 20px; /* Largura do painel lateral */
+        }
+
+        main h1 {
+            color: #002D74
+        }
+
+        main p{
+            
+            color: #002D74
+        }
+        .catalogo{
+            color: #002D74;
+            font-size: 64px;
+            font-weight: Medium;
+            font-family: "K2D";
+            margin-left: 62px;
+            margin-bottom: 24px;
+        }
+        .bemvindo{
+            font-size: 20px;
+        }
+        .indicadores{
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .retangulo {
+            position: relative;
+            background-color: #002D74;
+            margin-left: 62px;
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+            border-radius: 15px;
+            }
+
+        .botao {
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background-color: white; 
+            color: #002D74;
+            width: 557px;
+            height: 100px;
+            border: 1px #002D74 solid;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 48px;
+        }
+        .button{
+            background-color: #002D74;
+            width: 385px; 
+            height: 195px; 
+            background: white; 
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); 
+            border-radius: 15px;
+            border: 1px #002D74 solid;
+            margin-top: 26px;
+            margin-left: 62px;
+        }
+        .textosIndicadores {
+            display: flex;
+            color: #002D74;
+            font-size: 20px;
+            flex-direction: column;  /* Stacks elements vertically */
+            justify-content: space-between; /* Distributes space between elements */
+            align-items: center;  /* Centers elements horizontally */
+            margin: 0px;
+            padding: 0;
+            margin-bottom: 0px;
+        }
+        .textosPreco{
+            display: flex;
+            color: #002D74;
+            font-size: 20px;
+            flex-direction: column;  /* Stacks elements vertically */
+            justify-content: space-between; /* Distributes space between elements */
+            align-items: center;  /* Centers elements horizontally */
+            margin: 0px;
+            padding: 0;
+        }
+        .botaoAdicionarPainel{
+            background-color: #002D74;
+            border-radius: 10px;
+            width: 186px;
+            height: 34px;
+            color:aliceblue;
+            margin-left: 62px;
+            margin-top: 6px;
+        }
+        .botaoRemoverPainel{
+            background-color: #002D74;
+            border-radius: 10px;
+            width: 186px;
+            height: 34px;
+            color:aliceblue;
+            margin-left: 7px;
+        }
+        .textoIndicadores{
+            display: flex;
+            color: #002D74;
+            font-size: 20px;
+            flex-direction: column;  /* Stacks elements vertically */
+            justify-content: space-between; /* Distributes space between elements */
+            align-items: center;  /* Centers elements horizontally */
+            margin-left: 55px;
         }
     </style>
+
 </head>
 <body>
-    <div class="sidebar">
-        <h1>Bem-vindo, usuário {{ nome }}!</h1>
+    <nav>
+        <div style="display: flex; align-items: center;">
+            <img src="{% static 'IconeSoftware.svg' %}" width="87" height="87" alt="Ícone de Software">
+            <h1 style="color: white; font-size: 45px; margin-left: 20px;">HealthBase</h1>
+        </div>
+        <h3 style="color: white;">Bem-vindo, usuário {{ nome }}!</h3>
         <a href="{% url 'menu' %}">Catálogo</a>
-        <a href="{% url 'conta' %}">Conta</a>
+        <a href="{% url 'conta' %}">Minha Conta</a>
         <a href="{% url 'encomendar_indicadores' %}">Encomenda de Indicadores</a>
         <a href="{% url 'visualizar_cobrancas' %}">Billing</a>
         <a href="{% url 'home' %}">Logout</a>
-    </div>
+        <div style="margin-top:290px;color:white;">
+            © 2024 HealthBase<br>
+            <img src="{% static 'bandeira.png' %}" alt="bandeira">
+        </div>
+    </nav>
     <div class="catalog">
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}
-                <input type="hidden" name="produto" value="Indicador 1">
-                <input type="hidden" name="preco" value="4.00">
-                <input type="hidden" name="powerbi_url" value="https://app.powerbi.com/reportEmbed?reportId=c42eef01-3030-49c6-a9ff-76b483648bfd&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963">
-                <button type="submit" class="button">
-                    <p>Indicador 1</p>
-                    <p>Preço: R$4,00</p>
-                </button>         
-        </form>
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" name="adicionar1" value="adicionar1">Adicionar ao Painel</button>
-            <button type="submit" name="remover1" value="remover1">Remover do Painel</button>
-            {% if indicador1 == 0 %}
-                <p style="color: red;">O indicador não foi adicionado ao painel</p>
-            {% elif indicador1 == 1 %}
-                <p style="color: green;">O indicador foi adicionado ao painel</p>
-            {% endif %}
-        </form> 
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}       
-            <input type="hidden" name="produto" value="Indicador 2">
-            <input type="hidden" name="preco" value="8.00">
-            <input type="hidden" name="powerbi_url" value="www.terra.com.br">
-            <button type="submit" class="button">
-                <p>Indicador 2</p>
-                <p>Preço: R$8,00</p>
-            </button> 
-        </form>
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" name="adicionar2" value="adicionar2">Adicionar ao Painel</button>
-            <button type="submit" name="remover2" value="remover2">Remover do Painel</button>
-            {% if indicador2 == 0 %}
-                <p style="color: red;">O indicador não foi adicionado ao painel</p>
-            {% elif indicador2 == 1 %}
-                <p style="color: green;">O indicador foi adicionado ao painel</p>
-            {% endif %}
-        </form> 
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}       
-            <input type="hidden" name="produto" value="Indicador 3">
-            <input type="hidden" name="preco" value="16.00">
-            <input type="hidden" name="powerbi_url" value="www.r7.com">
-            <button type="submit" class="button">
-                <p>Indicador 3</p>
-                <p>Preço: R$16,00</p>
-            </button>
-        </form>
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" name="adicionar3" value="adicionar3">Adicionar ao Painel</button>
-            <button type="submit" name="remover3" value="remover3">Remover do Painel</button>
-            {% if indicador3 == 0 %}
-                <p style="color: red;">O indicador não foi adicionado ao painel</p>
-            {% elif indicador3 == 1 %}
-                <p style="color: green;">O indicador foi adicionado ao painel</p>
-            {% endif %}
-        </form> 
-        <form action="{% url 'menu' %}" method="post">
-            {% csrf_token %}       
-            <input type="hidden" name="produto" value="Indicador 4">
-            <input type="hidden" name="preco" value="20.00">
-            <input type="hidden" name="powerbi_url" value="www.terra.com.br">
-            <button type="submit" class="button">
-                <p>Indicador 4</p>
-                <p>Preço: R$20,00</p>
-            </button>
-            <button type="submit" name="adicionar4" value="adicionar4">Adicionar ao Painel</button>
-            <button type="submit" name="remover4" value="remover4">Remover do Painel</button>
-        </form>
-        <form action="{% url 'meupainel' %}" method="post" target="_blank">
-            {% csrf_token %}
-            <button type="submit" class="button">
-                <p>Meu Painel</p>
-            </button>
-        </form>
+        <div class="catalogo">
+            Catálogo<br>
+            <div class="bemvindo">
+                Bem-Vindo ao seu Catálogo, aqui você terá acesso ao seu painel de indicadores!
+            </div>
+        </div>
+        <div class="retangulo">
+            <img src="{% static 'imagemPainel.png' %}" width="1129" height="542" alt="imagemPainel">
+            <form action="{% url 'meupainel' %}" method="post" target="_blank">
+                {% csrf_token %}
+                <button type="submit" class="botao">
+                    Acessar o Painel
+                </button>
+            </form>
+        </div>
+        <div class="indicadores">
+            <div class="Indicador1">
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}
+                        <input type="hidden" name="produto" value="Indicador: Atendimento via telemedicina">
+                        <input type="hidden" name="preco" value="4.00">
+                        <input type="hidden" name="powerbi_url" value="https://app.powerbi.com/reportEmbed?reportId=a918af25-5ee6-46b6-9f3c-cded36387273&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963">
+    
+                        <button type="submit" class="button">
+                        <img src="{% static 'tele.png' %}" width="75" height="75" alt="tele">
+                            <div class="textosIndicadores">
+                                Telemedicina
+                            </div>
+                            <div class="textosPreco">
+                                Preço: R$4,00
+                            </div>
+                        </button>         
+                </form>
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}
+                    <div class="textoIndicadores">
+                        {% if indicador1 == 0 %}
+                        <p style="color: red;">O indicador não foi adicionado ao painel</p>
+                    {% elif indicador1 == 1 %}
+                        <p style="color: green;">O indicador foi adicionado ao painel</p>
+                    {% endif %}
+                    </div>
+    
+                    <button type="submit" name="adicionar1" value="adicionar1" class="botaoAdicionarPainel">
+                            Adicionar ao Painel
+                    </button>
+                    <button type="submit" name="remover1" value="remover1"class="botaoRemoverPainel">Remover do Painel</button>
+                </form> 
+            </div>
+    
+            <div class="Indicador2">
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}       
+                    <input type="hidden" name="produto" value="Indicador: Organizado por sexo">
+                    <input type="hidden" name="preco" value="8.00">
+                    <input type="hidden" name="powerbi_url" value="https://app.powerbi.com/reportEmbed?reportId=3d8ba75b-ea72-4131-b653-b45d131dc49c&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963">
+                    <button type="submit" class="button">
+                        <img src="{% static 'sexo.png' %}" width="75" height="75" alt="sexo">
+                        <div class="textosIndicadores">
+                            Sexo                           
+                        </div>
+                        <div class="textosPreco">
+                            Preço: R$8,00
+                        </div>
+                    </button> 
+                </form>
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}
+                    <div class="textoIndicadores">
+                        {% if indicador2 == 0 %}
+                        <p style="color: red;">O indicador não foi adicionado ao painel</p>
+                    {% elif indicador2 == 1 %}
+                        <p style="color: green;">O indicador foi adicionado ao painel</p>
+                    {% endif %}
+                    </div>
+                    <button type="submit" name="adicionar2" value="adicionar2"class="botaoAdicionarPainel">Adicionar ao Painel</button>
+                    <button type="submit" name="remover2" value="remover2"class="botaoRemoverPainel">Remover do Painel</button>
+                </form> 
+            </div>
+            <div class="Indicador3">
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}       
+                    <input type="hidden" name="produto" value="Indicador: Número de reviews">
+                    <input type="hidden" name="preco" value="16.00">
+                    <input type="hidden" name="powerbi_url" value="https://app.powerbi.com/reportEmbed?reportId=f53d8429-0103-43c8-ae3c-2b814bc3d20a&autoAuth=true&ctid=ef5cc778-94be-4ed2-a0bd-32b2c2b34963">
+                    <button type="submit" class="button">
+                        <img src="{% static 'review.png' %}" width="75" height="75" alt="review">
+                        <div class="textosIndicadores">
+                            Reviews                           
+                        </div>
+                        <div class="textosPreco">
+                            Preço: R$16,00
+                        </div>
+                    </button>
+                </form>
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}
+                    <div class="textoIndicadores">
+                        {% if indicador3 == 0 %}
+                        <p style="color: red;">O indicador não foi adicionado ao painel</p>
+                    {% elif indicador3 == 1 %}
+                        <p style="color: green;">O indicador foi adicionado ao painel</p>
+                    {% endif %}
+                    </div>
+                    <button type="submit" name="adicionar3" value="adicionar3"class="botaoAdicionarPainel">Adicionar ao Painel</button>
+                    <button type="submit" name="remover3" value="remover3"class="botaoRemoverPainel">Remover do Painel</button>
+                </form> 
+            </div>
+        </div>
     </div>
 </body>
 </html>

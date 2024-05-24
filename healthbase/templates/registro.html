@@ -1,90 +1,166 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
+    <link rel="stylesheet" href="{% static 'style_cadastro.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <nav style = "background-color: darkblue !important;" class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1" style="color: white;">HealthBase</span>
-        </div>
-    </nav>
+    <title>Healthbase - Cadastrar assinante</title>
 
-    <title>Cadastrar Assinante</title>
-    
     <style>
         body {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            height: 100vh;
+            font-family: "K2D";
             margin: 0;
+            padding: 0;
             background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        nav {
+            width: 100%;
+            background-color: #154BA8;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: white;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+        }
+
         .container {
-            width: 45%;
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .container-terms,
+        .container-form {
+            flex: 1;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
-        .form-container {
-            display: flex;
-            flex-direction: column;
+
+        h1, h2 {
+            color: #002D74;
         }
-        .form-container button {
+
+        p, label {
+            color: #002D74;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #002D74;
+            border-radius: 6px;
+        }
+
+        button {
             margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            background-color: #002D74;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1957B9;
+        }
+
+        button[type="submit"][name="recusar"] {
+            background-color: red;
+        }
+
+        button[type="submit"][name="recusar"]:hover {
+            background-color: darkred;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Termos de Uso</h1>
-        <h2>1. Aceitação dos Termos de Uso</h2>
-        <p>Ao acessar e usar nosso aplicativo, você concorda em cumprir estes Termos de Uso. Se você não concordar com estes termos, por favor, não acesse ou use o aplicativo.</p>
-        <h2>2. Serviços Gratuitos e Pagos</h2>
-        <p>O uso básico do aplicativo é gratuito. No entanto, cobramos uma taxa para o acesso a indicadores a partir de nosso catálogo. O preço de cada indicador será claramente indicado no aplicativo.</p>
-        <h2>3. Pagamento</h2>
-        <p>O pagamento pelos indicadores é feito por meio de compras individuais dentro do aplicativo, através do cartão cadastrado. Não cobramos uma taxa de assinatura mensal. O pagamento é referente a cada acesso aos indicadores</p>
-        <h2>4. Política de Reembolso</h2>
-        <p>Todas as vendas de indicadores são finais. Não oferecemos reembolsos para compras de indicadores.</p>
-        <h2>5. Uso Aceitável</h2>
-        <p>Você concorda em não usar o aplicativo de maneira que cause danos ao aplicativo ou impeça o uso e o gozo do aplicativo por outros usuários.</p>
-        <h2>6. Alterações nos Termos de Uso</h2>
-        <p>Podemos alterar estes Termos de Uso a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação dos Termos de Uso atualizados.</p>
-        <h2>7. Contato</h2>
-        <p>Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco pelo e-mail suporte@nossoapp.com.</p>
-        <p>Data da última atualização: 21 de abril de 2024</p>
-    </div>
-    <div class="container form-container">
-        <h1>Cadastrar Assinante</h1>
-        <!-- Bloco para exibir a mensagem de erro -->
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        <form method="POST">
-            {% csrf_token %}
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required><br>
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" required><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required><br>
-            <label for="numCartao">Número do Cartão:</label>
-            <input type="text" id="numCartao" name="numCartao" required><br>
-            <label for="nomeCartão">Nome Mostrado no Cartão:</label>
-            <input type="text" id="nomeCartao" name="nomeCartao" required><br>
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required><br>
-            <label for="val_cartao">Validade do Cartão:</label>
-            <input type="date" id="val_cartao" name="val_cartao" required><br>
-            <button type="submit" name="aceitar" value="1">Aceitar Termos e Cadastrar</button>
-            <button type="submit" name="recusar" style="background-color: red; color: white;" onclick="recusarTermos()">Recusar Termos</button>
-        </form>
+        <div class="container-terms">
+            <h1>Termos de Uso</h1>
+            <h2>1. Aceitação dos Termos de Uso</h2>
+            <p>Ao acessar e usar nosso aplicativo, você concorda em cumprir estes Termos de Uso. Se você não concordar com estes termos, por favor, não acesse ou use o aplicativo.</p>
+            <h2>2. Serviços Gratuitos e Pagos</h2>
+            <p>O uso básico do aplicativo é gratuito. No entanto, cobramos uma taxa para o acesso a indicadores a partir de nosso catálogo. O preço de cada indicador será claramente indicado no aplicativo.</p>
+            <h2>3. Pagamento</h2>
+            <p>O pagamento pelos indicadores é feito por meio de compras individuais dentro do aplicativo, através do cartão cadastrado. Não cobramos uma taxa de assinatura mensal. O pagamento é referente a cada acesso aos indicadores.</p>
+            <h2>4. Política de Reembolso</h2>
+            <p>Todas as vendas de indicadores são finais. Não oferecemos reembolsos para compras de indicadores.</p>
+            <h2>5. Uso Aceitável</h2>
+            <p>Você concorda em não usar o aplicativo de maneira que cause danos ao aplicativo ou impeça o uso e o gozo do aplicativo por outros usuários.</p>
+            <h2>6. Alterações nos Termos de Uso</h2>
+            <p>Podemos alterar estes Termos de Uso a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação dos Termos de Uso atualizados.</p>
+            <h2>7. Contato</h2>
+            <p>Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco pelo e-mail suporte@nossoapp.com.</p>
+            <p>Data da última atualização: 21 de abril de 2024</p>
+        </div>
+        <div class="container-form">
+            <h1>Cadastrar Assinante</h1>
+            <!-- Bloco para exibir a mensagem de erro -->
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div class="form-group">
+                    <label for="numCartao">Número do cartão:</label>
+                    <input type="text" id="numCartao" name="numCartao" required>
+                </div>
+                <div class="form-group">
+                    <label for="nomeCartao">Nome mostrado no cartão:</label>
+                    <input type="text" id="nomeCartao" name="nomeCartao" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" required>
+                </div>
+                <div class="form-group">
+                    <label for="val_cartao">Validade do cartão:</label>
+                    <input type="date" id="val_cartao" name="val_cartao" required>
+                </div>
+                <button type="submit" name="aceitar" value="1">Aceitar Termos e Cadastrar</button>
+                <button type="submit" name="recusar" value="0">Recusar Termos</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

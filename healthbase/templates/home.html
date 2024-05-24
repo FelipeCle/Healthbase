@@ -4,7 +4,7 @@
 <head>
     <style>
     :root{
-        --cor-azul: #002D74;
+        --cor-azul: #154BA8;
         --cor-preta: #000000;
         --cor-azulclaro: #00A3EE;
         --cor-branca: #FFFFFF;
@@ -15,6 +15,16 @@
     *::before{
         box-sizing:border-box;
     }
+    #email, #senha {
+            width: 300px; /* largura desejada */
+            height: 40px; /* altura desejada */
+        }
+
+        /* Estilo para mover a caixa de texto para baixo */
+        #email-container,#password-container {
+            margin-top: 20px; /* distância do topo */
+        }
+        
     body{
         margin:0;
         font-family:K2D;
@@ -103,17 +113,21 @@
         margin: 13px 0; 
     }
     
-    .entrar{
-        padding: 20px 300px;
-        margin-bottom: 18px;
-        border-radius: 24px;
-        color: var(--cor-branca);
-        background-color: var(--cor-azul);
-        display: inline-block;
-        font-weight: bold;
-        font-size: 18px;
-        text-decoration: none;
-    }
+    .entrar button {
+            border: none; /* Remove a borda padrão */
+            border-radius: 24px; /* Mantém o mesmo raio de borda do contêiner */
+            background-color: transparent; /* Remove o plano de fundo padrão */
+            padding: 20px 300px; /* Mantém o mesmo preenchimento do contêiner */
+            color: var(--cor-branca);
+            background-color: var(--cor-azul);
+            font-weight: inherit; /* Herda o peso da fonte do contêiner */
+            font-size: inherit; /* Herda o tamanho da fonte do contêiner */
+        }
+
+        .entrar button:focus {
+            outline: none; /* Remove o contorno ao focar */
+            border: 2px solid var(--cor-azul); /* Adiciona uma borda azul ao focar */
+        }
     
     .bandeira{
         color:#FFFFFF;
@@ -140,7 +154,6 @@
             </div>
             <div class="bandeira">
                 © 2024 HealthBase<br>
-                
                 <img src="{% static 'bandeira.png' %}">
             </div>
 
@@ -149,23 +162,20 @@
             <div class="login">
                 Login
             </div>
-            <form method="post"> 
+            <form method="post"> <!-- Adicione o formulário e o método POST aqui, ajuste o action conforme necessário -->
                 {% csrf_token %} 
                 <div class="user">
-                    <label for="email">Email</label>
+                    <label for="email">Email<br></label>
                     <input type="text" id="email" name="email" placeholder="Insira o Email" required>
                 </div>
                 <div class="password">
-                    <label for="senha">Senha</label>
+                    <label for="senha">Senha<br></label>
                     <input type="password" id="senha" name="senha" placeholder="Insira a Senha" required>
                 </div>
                 <div class="secao">
                     <div class="div">
                         <input type="checkbox" id="lembrar" name="lembrar">
                         <label for="lembrar">Lembrar de mim</label>
-                    </div>
-                    <div class="div">
-                        <a href="#">Esqueceu a senha?</a>
                     </div>
                 </div>
                 <div class="entrar">
